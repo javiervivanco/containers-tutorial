@@ -1,0 +1,18 @@
+version: '3.1'
+
+services: 
+  api:
+    image: workshop-comafi:container-03
+    ports:
+      - 9999:8888
+    volumes:
+      - $PWD/.env:/opt/app/data/.env
+  proxy:
+      image: mitmproxy/mitmproxy
+      command: -Dconfig.file=/opt/elasticmq.conf
+      command: mitmweb --web-iface 0.0.0.0
+      ports:
+        - 6666:8080
+        - 7777:8081
+      links:
+        - api
