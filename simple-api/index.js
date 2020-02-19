@@ -5,7 +5,7 @@ var path = require('path');
 var app = express();
 const dotenv = require('dotenv');
 
-dotenv.config({path:path.resolve(process.cwd(), '.env')});
+dotenv.config({path:path.resolve(process.cwd(), '/data/.env')});
 
 if (dotenv.error) {
   throw dotenv.error
@@ -13,9 +13,10 @@ if (dotenv.error) {
  
 
 const port = process.env.PORT;
+const mensaje = process.env.MENSAJE;
 
 app.get('/ping', function (req, res) {
-  res.json({pong: true, datetime: Date().toLocaleString()});
+  res.json({pong: true, mensaje: mensaje, datetime: Date().toLocaleString()});
 });
 
 app.get('/health', function (req, res) {

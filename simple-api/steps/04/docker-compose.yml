@@ -1,9 +1,9 @@
-version: 3
+version: '3.1'
 
-service: 
+services: 
   api:
     image: workshop-comafi:container-03
-    port:
+    ports:
       - 9999:8888
-    volume:
+    volumes:
       - $PWD/.env:/opt/app/data/.env
